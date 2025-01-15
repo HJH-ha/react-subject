@@ -9,6 +9,7 @@ function App() {
   const [keyword, setKeyword] = useState("");
   const [favorites, setFavorites] = useState([]);
   const [selectedFavorite, setSelectedFavorite] = useState(null);
+  const [userPosition, setUserPosition] = useState(null);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -22,7 +23,7 @@ function App() {
   }, [favorites]);
   return (
     <div>
-      <Navbar />
+      <Navbar setUserPosition={setUserPosition} />
       <h1 className="name">지도 검색</h1>
       <SearchComponent
         setKeyword={setKeyword}
@@ -35,6 +36,7 @@ function App() {
         favorites={favorites}
         setFavorites={setFavorites}
         selectedFavorite={selectedFavorite}
+        userPosition={userPosition}
       />
       <Footer />
     </div>

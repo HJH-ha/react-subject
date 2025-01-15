@@ -21,3 +21,23 @@
 .navbar-logo {
   cursor: pointer;
 }
+
+.current-btn {
+  margin-right: 400px;
+  background-color: #4092f7;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.current-btn:hover {
+  background-color: #318af6;
+  transform: scale(1.05);
+}
+
+.navbar-links p {
+  margin: 0;
+}

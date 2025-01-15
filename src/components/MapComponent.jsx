@@ -1,7 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./MapComponent.css";
 
-function MapComponent({ keyword, favorites, setFavorites, selectedFavorite }) {
+function MapComponent({
+  keyword,
+  favorites,
+  setFavorites,
+  selectedFavorite,
+  userPosition,
+}) {
   const mapRef = useRef(null);
   const mapInstance = useRef(null);
   const markerRefs = useRef([]);
@@ -20,7 +26,9 @@ function MapComponent({ keyword, favorites, setFavorites, selectedFavorite }) {
     const container = mapRef.current;
 
     const options = {
-      center: new kakao.maps.LatLng(35.1795543, 129.0756416),
+      center: userPosition
+        ? new kakao.maps.LatLng(userPosition.lat, userPosition.lng)
+        : new kakao.maps.LatLng(35.1795543, 129.0756416),
       level: 3,
     };
     const map = new kakao.maps.Map(container, options);
@@ -86,7 +94,7 @@ function MapComponent({ keyword, favorites, setFavorites, selectedFavorite }) {
       markerRefs.current.forEach((marker) => marker.setMap(null));
       overlayRefs.current.forEach((overlay) => overlay.setMap(null));
     };
-  }, [keyword]);
+  }, [keyword, userPosition]);
 
   useEffect(() => {
     if (selectedFavorite && mapInstance.current) {
