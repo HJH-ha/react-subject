@@ -1,0 +1,30 @@
+/* Footer 스타일 */
+.footer {
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  height: 100px; /* 푸터의 높이 */
+  background-color: #f1f1f1; /* 배경색 */
+  border-top: 2px solid #ddd; /* 상단 경계선 */
+  flex-direction: column;
+}
+
+.footer > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+
+.svg {
+  margin-right: 10px; /* 아이콘과 텍스트 간의 간격 */
+  fill: rgba(0, 0, 0, 0.7);
+}
+
+.footer-letter {
+  font-size: 23px;
+  color: #333;
+  margin: 0;
+  margin-top: 10px;
+}

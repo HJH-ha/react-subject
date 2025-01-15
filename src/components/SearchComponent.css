@@ -1,0 +1,95 @@
+/* 검색창 컨테이너 스타일 */
+.search-container {
+  position: static;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 입력창 스타일 */
+.search-input {
+  width: 300px;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  margin-right: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 입력창에 포커스 시 스타일 */
+.search-input:focus {
+  border-color: #8181f7;
+  box-shadow: 0 0 5px rgba(165, 111, 182, 0.5);
+}
+
+/* 버튼 스타일 */
+.search-button {
+  padding: 12px 20px;
+  background-color: #8181f7;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* 버튼 hover 효과 */
+.search-button:hover {
+  background-color: #7966f4;
+  transform: scale(1.05);
+}
+
+/* 버튼 클릭 시 효과 */
+.search-button:active {
+  transform: scale(1);
+}
+.favorites ul {
+  display: grid; /* grid 레이아웃 사용 */
+  grid-template-columns: repeat(5, 1fr); /* 한 줄에 5개의 열 */
+  gap: 15px; /* 항목 간 간격 */
+  justify-content: center; /* 가운데 정렬 */
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  max-width: 100%; /* 컨테이너의 최대 너비 설정 */
+}
+
+.favorites li {
+  text-align: center; /* 텍스트 가운데 정렬 */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.favorites li:hover {
+  transform: scale(1.05); /* 호버 시 살짝 확대 효과 */
+}
+
+.favorites button {
+  margin-top: 10px;
+  margin-left: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #ff6b6b;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.favorites button:hover {
+  background-color: #f64b31; /* 버튼 호버 시 색상 변경 */
+}

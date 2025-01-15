@@ -1,0 +1,87 @@
+/* 버튼 스타일 */
+.top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #ff6f61;
+  opacity: 0.5;
+  color: white;
+  border: none;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+/* 버튼 hover 효과 */
+button:hover {
+  background-color: #ff4f3b;
+  opacity: 100;
+}
+h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #333;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li {
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+li:hover {
+  background-color: #f1f1f1;
+}
+strong {
+  font-size: 18px;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+}
+small {
+  color: #777;
+}
+#map {
+  width: 70%;
+  height: 700px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.all {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+.favbtn {
+  float: right;
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.add-favorite {
+  background-color: #8181f7;
+}
+.add-favorite:hover {
+  background-color: #7966f4;
+}
+.remove-favorite {
+  background-color: #ff6b6b;
+}
+.remove-favorite:hover {
+  background-color: #f64b31;
+}
+.favbtn:hover {
+  transform: scale(1.05);
+}
