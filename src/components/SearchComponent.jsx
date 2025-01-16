@@ -4,18 +4,20 @@ import "./SearchComponent.css";
 function SearchComponent({
   setKeyword,
   favorites,
-  setFavorites,
-  onFavoriteClick,
+  setFavorites, // 즐겨찾기 목록 업데이트
+  onFavoriteClick, // 즐겨찾기 항목을 클릭할 때 실행되는 함수
 }) {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(""); // 검색어
 
   const handleSearch = () => {
     setKeyword(inputValue);
   };
 
+  // 즐겨찾기 항목 제거
   const handleRemoveFavorite = (id) => {
     setFavorites((prevFavorites) => {
       const updatedFavorites = prevFavorites.filter((fav) => fav.id !== id);
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
       return updatedFavorites;
     });
   };
@@ -27,7 +29,7 @@ function SearchComponent({
           type="text"
           className="search-input"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={(e) => setInputValue(e.target.value)} // 입력값이 변경될 때 상태 업데이트
           placeholder="장소를 입력하세요"
         />
         <button onClick={handleSearch} className="search-button">

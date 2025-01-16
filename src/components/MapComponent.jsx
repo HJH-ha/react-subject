@@ -2,18 +2,19 @@ import React, { useEffect, useRef, useState } from "react";
 import "./MapComponent.css";
 
 function MapComponent({
-  keyword,
-  favorites,
-  setFavorites,
-  selectedFavorite,
+  keyword, // 검색어
+  favorites, // 즐겨찾기 목록
+  setFavorites, // 즐겨찾기 목록 업데이트
+  selectedFavorite, // 선택된 즐겨찾기(클릭했을 때 실행)
   userPosition,
 }) {
-  const mapRef = useRef(null);
-  const mapInstance = useRef(null);
-  const markerRefs = useRef([]);
-  const overlayRefs = useRef([]);
-  const [parks, setParks] = useState([]);
+  const mapRef = useRef(null); // 지도 DOM을 참조
+  const mapInstance = useRef(null); // 카카오 맵 인스턴스 참조
+  const markerRefs = useRef([]); // 마커 참조
+  const overlayRefs = useRef([]); // 오버레이 참조
+  const [parks, setParks] = useState([]); //  주차장 목록 저장
 
+  // 페이지 상단으로
   const handleClick = () => {
     window.scrollTo({
       top: 0,
@@ -25,6 +26,7 @@ function MapComponent({
     const kakao = window.kakao;
     const container = mapRef.current;
 
+    // 지도 초기 설정
     const options = {
       center: userPosition
         ? new kakao.maps.LatLng(userPosition.lat, userPosition.lng)
@@ -34,13 +36,16 @@ function MapComponent({
     const map = new kakao.maps.Map(container, options);
     mapInstance.current = map;
 
+    // 카카오 지도 API의 장소 검색 서비스 객체, 키워드 검색시 필요
     const ps = new kakao.maps.services.Places();
 
+    //키워드로 장소 검색
     ps.keywordSearch(keyword, (result, status) => {
       if (status === kakao.maps.services.Status.OK) {
         const center = new kakao.maps.LatLng(result[0].y, result[0].x);
         map.setCenter(center);
 
+        // 카테고리 검색 PK6 주차장
         ps.categorySearch(
           "PK6",
           (data, status) => {
@@ -56,6 +61,7 @@ function MapComponent({
       }
     });
 
+    //주차장에 마커 추가
     const addMarkers = (data, map) => {
       markerRefs.current.forEach((marker) => marker.setMap(null));
       overlayRefs.current.forEach((overlay) => overlay.setMap(null));
@@ -73,6 +79,7 @@ function MapComponent({
         overlayContent.innerHTML = `<div style="background: white; border: 1px solid #ccc; padding: 5px; border-radius: 5px;">${place.place_name}</div>`;
         overlayContent.style.whiteSpace = "nowrap";
 
+        // 마커위에 오버레이 글씨 표시
         const overlay = new kakao.maps.CustomOverlay({
           content: overlayContent,
           position: new kakao.maps.LatLng(place.y, place.x),
@@ -81,6 +88,7 @@ function MapComponent({
         overlay.setMap(map);
         overlayRefs.current.push(overlay);
 
+        // 마커 오버레이 클릭시 카카오에서 제공하는 상세보기 페이지 열기
         kakao.maps.event.addListener(marker, "click", () => {
           window.open(place.place_url, "_blank");
         });
@@ -90,6 +98,7 @@ function MapComponent({
       });
     };
 
+    //다른 행동 실행시 기존에 마커랑 오버레이 제거
     return () => {
       markerRefs.current.forEach((marker) => marker.setMap(null));
       overlayRefs.current.forEach((overlay) => overlay.setMap(null));
@@ -108,6 +117,7 @@ function MapComponent({
       markerRefs.current = [];
       overlayRefs.current = [];
 
+      // 선택된 즐겨찾기에 마커와 오버레이 추가
       const marker = new kakao.maps.Marker({
         position: latLng,
         map: mapInstance.current,
@@ -126,6 +136,7 @@ function MapComponent({
       overlay.setMap(mapInstance.current);
       overlayRefs.current.push(overlay);
 
+      // 즐겨찾기에서 이름 클릭시 아까와 같은 링크 열기
       kakao.maps.event.addListener(marker, "click", () => {
         window.open(place_url, "_blank");
       });
@@ -135,19 +146,25 @@ function MapComponent({
     }
   }, [selectedFavorite]);
 
+  // 주차장 목록 클릭 시 해당 위치로 지도 이동
   const handleListClick = (park) => {
     const latLng = new kakao.maps.LatLng(park.y, park.x);
     mapInstance.current.setCenter(latLng);
   };
 
+  // 주차장 즐겨찾기 추가/제거 함수
   const handleFavoriteClick = (park) => {
     setFavorites((prevFavorites) => {
       const isFavorite = prevFavorites.some((item) => item.id === park.id);
+      let updatedFavorites;
       if (isFavorite) {
-        return prevFavorites.filter((item) => item.id !== park.id);
+        updatedFavorites = prevFavorites.filter((item) => item.id !== park.id);
       } else {
-        return [...prevFavorites, park];
+        updatedFavorites = [...prevFavorites, park];
       }
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+
+      return updatedFavorites;
     });
   };
 
