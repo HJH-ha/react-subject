@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.css";
-import "../assets/gps.png";
-import "../assets/park.png";
+import GPS from "../assets/gps.png";
+import Park from "../assets/park.png";
 
 function Navbar({ setUserPosition }) {
   const handleLogoClick = () => {
@@ -20,7 +20,7 @@ function Navbar({ setUserPosition }) {
   return (
     <div className="navbar">
       <div className="navbar-logo" onClick={handleLogoClick}>
-        <img src="../src/assets/park.png" />
+        <img src={Park} />
         <h1>주차장 검색</h1>
       </div>
       <div className="navbar-links">
@@ -29,7 +29,7 @@ function Navbar({ setUserPosition }) {
           type="button"
           onClick={locateCurrentPosition}
         >
-          <img className="current-img" src="../src/assets/gps.png" />
+          <img className="current-img" src={GPS} />
           <p>최근 검색 위치</p>
         </button>
       </div>
