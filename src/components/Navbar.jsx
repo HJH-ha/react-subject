@@ -1,5 +1,7 @@
 import React from "react";
 import "./Navbar.css";
+import "../assets/gps.png";
+import "../assets/park.png";
 
 function Navbar({ setUserPosition }) {
   const handleLogoClick = () => {
