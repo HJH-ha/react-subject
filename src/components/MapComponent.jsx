@@ -29,7 +29,7 @@ function MapComponent({
       center: userPosition
         ? new kakao.maps.LatLng(userPosition.lat, userPosition.lng)
         : new kakao.maps.LatLng(35.1795543, 129.0756416),
-      level: 5,
+      level: 4,
     };
     const map = new kakao.maps.Map(container, options);
     mapInstance.current = map;
