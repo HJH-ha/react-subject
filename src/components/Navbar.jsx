@@ -28,7 +28,7 @@ function Navbar({ setUserPosition }) {
           onClick={locateCurrentPosition}
         >
           <img className="current-img" src="../src/assets/gps.png" />
-          <p>현재 위치</p>
+          <p>최근 검색 위치</p>
         </button>
       </div>
     </div>
