@@ -6,7 +6,6 @@
   padding-left: 200px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 30px;
-  width: 100%;
 }
 
 .navbar-logo h1 {
@@ -23,7 +22,7 @@
 }
 
 .current-btn {
-  margin-right: 400px;
+  margin-right: 250px;
   background-color: #4092f7;
   color: white;
   border: none;
